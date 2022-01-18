@@ -1,0 +1,21 @@
+version: '3'
+services:
+  db:
+    image: rethinkdb:latest
+    ports:  
+      - "38080:8080"
+  web:
+    image: node:alpine    
+    volumes:
+      - ./startup:/usr/startup
+      - ./api:/usr/api
+      - ./client:/usr/client
+    working_dir: /usr/api
+    environment:
+      - NPM_PROXY_CACHE=${MINIENV_NPM_PROXY_CACHE}
+    command: /usr/startup/startup.sh
+    ports:
+      - "8000:3030"
+      - "8082:3000"
+    depends_on:
+      - db

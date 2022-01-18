@@ -1,0 +1,28 @@
+{
+  "editor" : {
+    "hide": false,
+    "srcDir": "api"
+  },
+  "proxy": {
+    "ports": [
+      {
+        "port": 38080,
+        "hide": false,
+        "name": "RethinkDB",
+        "path": "/"
+      },
+      {
+        "port": 8082,
+        "hide": false,
+        "name": "REST API",
+        "path": "/"
+      },
+      {
+        "port": 8000,
+        "hide": false,
+        "name": "GUI",
+        "path": "/"
+      }
+    ]
+  }
+}
