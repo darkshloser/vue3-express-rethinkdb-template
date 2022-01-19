@@ -9,7 +9,7 @@ services:
     volumes:
       - ./startup:/usr/startup
       - ./api:/usr/api
-      - ./client:/usr/client
+      - ./web_client:/usr/web_client
     working_dir: /usr/api
     environment:
       - NPM_PROXY_CACHE=${MINIENV_NPM_PROXY_CACHE}
