@@ -1,0 +1,28 @@
+<!DOCTYPE html>
+<html>
+	<head>
+		<title>RethinkDB CRUD Example</title>
+		<link rel="stylesheet" href="css/bootstrap.min.css">
+		<link rel="stylesheet" href="css/app.css">
+	</head>
+	<body>
+		<h2>Games :</h2>
+		<table border="1" cellspacing="0">
+			<tr>
+				<th>Player 1</th>
+				<th>Player 2</th>
+				<th>Status</th>
+				<th></th>
+			</tr>
+			<% for (var i=0; i<games.length; i++) { %>
+			<tr>
+				<td><%=games[i].player1%></td>
+				<td><%=games[i].player2%></td>
+				<td><%=games[i].status%></td>
+				<td><a href="/update?id=<%=games[i].id%>">Update</a></td>
+			</tr>   
+			<% } %>
+		</table>
+		<br /><a href="/create">Create New Game</a>
+	</body>
+</html>

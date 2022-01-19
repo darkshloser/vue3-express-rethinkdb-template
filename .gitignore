@@ -1,0 +1,11 @@
+
+# Environments
+.venv
+.env.local
+.env.*.local
+
+# General nodejs packages to be ignored 
+node_modules
+package-lock.json
+
+
