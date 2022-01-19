@@ -8,9 +8,9 @@ services:
     image: node:alpine    
     volumes:
       - ./startup:/usr/startup
-      - ./api:/usr/api
+      - ./web_api:/usr/web_api
       - ./web_client:/usr/web_client
-    working_dir: /usr/api
+    working_dir: /usr/web_api
     environment:
       - NPM_PROXY_CACHE=${MINIENV_NPM_PROXY_CACHE}
     command: /usr/startup/startup.sh

@@ -1,7 +1,7 @@
 {
   "editor" : {
     "hide": false,
-    "srcDir": "api"
+    "srcDir": "web_api"
   },
   "proxy": {
     "ports": [
