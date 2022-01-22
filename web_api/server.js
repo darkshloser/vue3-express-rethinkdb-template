@@ -3,15 +3,8 @@ const cfenv = require('cfenv');
 const config = require('./config');
 const express = require('express');
 const r = require('rethinkdb');
-const Vue = require('vue')
-const path = require('path')
-const dotenv = require('dotenv')
-
-
-
 const DatabaseController = require('./controllers/databaseController');
 const GameController = require('./controllers/gameController');
-
 
 const appEnv = cfenv.getAppEnv();
 const app = express();
@@ -40,22 +33,23 @@ const gameController = new GameController();
 })(app);
 
 // set body parser for form data
-app.use(bodyParser.json());
+app.use(bodyParser.urlencoded({
+    extended: true
+}));
 
 // serve the files out of ./public as our main files
 app.use(express.static(__dirname + '/public'));
 
 // set view engine and map views directory
 app.set('views', __dirname + '/views');
-app.set('view engine', 'html');
+app.set('view engine', 'ejs');
 
 // map requests
 app.get('/', (req, res) => {
-    res.sendFile(path.join(__dirname, "index.html"))
-    // gameController.getGames(req)
-    //     .then((games) => {
-    //         res.render('index', {games: games});
-    //     });
+    gameController.getGames(req)
+        .then((games) => {
+            res.render('index', {games: games});
+        });
 });
 
 app.get('/create', (req, res) => {
@@ -69,6 +63,13 @@ app.get('/update', (req, res) => {
         });
 });
 
+// form submits
+app.post('/create', (req, res) => {
+    gameController.createGame(req)
+        .then(() => {
+            res.redirect("/");
+        });
+});
 
 app.post('/update', (req, res) => {
     gameController.updateGame(req)
@@ -91,5 +92,3 @@ const hostname = appEnv.isLocal ? '0.0.0.0' : appEnv.bind;;
 http.listen(port, hostname, () => {
 	console.log(`Server started on ${hostname}:${port}.`)
 });
-
-module.exports = app;

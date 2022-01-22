@@ -24,6 +24,14 @@
       <li><a href="https://vue-loader.vuejs.org" target="_blank" rel="noopener">vue-loader</a></li>
       <li><a href="https://github.com/vuejs/awesome-vue" target="_blank" rel="noopener">awesome-vue</a></li>
     </ul>
+    <input v-model="user">
+    <button v-on:click="toggleActive">Test</button>
+    <div>
+      Message: {{ message() }}
+    </div>
+    <div>
+      Active: {{ isactive() }}
+    </div>
   </div>
 </template>
 
@@ -32,6 +40,23 @@ export default {
   name: 'HelloWorld',
   props: {
     msg: String
+  },
+  data() {
+    return {
+      user: '',
+      active: ''
+    }
+  },
+  methods: {
+    message() {
+      return this.user == "Francis" ? "Welcom" : "Not allowed"
+    },
+    isactive() {
+      return this.active ? 'Active':'Not active'
+    },
+    toggleActive() {
+      this.active = this.active ? false : true
+    }
   }
 }
 </script>
